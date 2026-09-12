@@ -1,0 +1,4 @@
+Flask
+huggingface_hub
+reportlab
+gunicorn

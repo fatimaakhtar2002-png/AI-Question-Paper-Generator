@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Question Paper Generator</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+
+        /* Loading Box */
+
+        .loading-box {
+
+            display: none;
+
+            margin-top: 25px;
+
+            padding: 18px;
+
+            background: #fce4ea;
+
+            border: 1px solid #e4b8c4;
+
+            border-radius: 12px;
+
+            text-align: center;
+
+            color: #9b4d65;
+
+            font-size: 16px;
+
+            font-weight: bold;
+        }
+
+
+        .loading-icon {
+
+            display: inline-block;
+
+            font-size: 24px;
+
+            margin-right: 8px;
+
+            animation: spin 1.2s linear infinite;
+        }
+
+
+        @keyframes spin {
+
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+
+        }
+
+
+        /* Disabled Generate Button */
+
+        button.loading {
+
+            background: #cfa0ad;
+
+            cursor: not-allowed;
+
+            opacity: 0.8;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+    <!-- Project Heading -->
+
+    <h1>🤖 AI Question Paper Generator</h1>
+
+
+    <p class="subtitle">
+
+        Generate Professional Question Papers Instantly
+
+    </p>
+
+
+    <!-- Input Form -->
+
+    <form action="/generate"
+          method="POST"
+          id="questionForm">
+
+
+        <!-- Subject -->
+
+        <label>Subject</label>
+
+        <input
+            type="text"
+            name="subject"
+            placeholder="Enter Subject Name"
+            required
+        >
+
+
+        <!-- Topic -->
+
+        <label>Topic Name</label>
+
+        <input
+            type="text"
+            name="topic"
+            placeholder="Enter Topic Name"
+            required
+        >
+
+
+        <!-- Total Questions -->
+
+        <label>Total Questions</label>
+
+        <input
+            type="number"
+            name="questions"
+            placeholder="Enter Number of Questions"
+            min="1"
+            max="100"
+            value="10"
+            required
+        >
+
+
+        <!-- Difficulty -->
+
+        <label>Difficulty Level</label>
+
+        <select name="difficulty">
+
+            <option value="Easy">
+                Easy
+            </option>
+
+            <option value="Medium" selected>
+                Medium
+            </option>
+
+            <option value="Hard">
+                Hard
+            </option>
+
+        </select>
+
+
+        <!-- Total Marks -->
+
+        <label>Total Marks</label>
+
+        <input
+            type="number"
+            name="marks"
+            placeholder="Enter Total Marks"
+            min="1"
+            max="500"
+            value="50"
+            required
+        >
+
+
+        <!-- Generate Button -->
+
+        <button
+            type="submit"
+            id="generateButton">
+
+            🤖 Generate Question Paper
+
+        </button>
+
+
+        <!-- Loading Message -->
+
+        <div class="loading-box"
+             id="loadingBox">
+
+            <span class="loading-icon">⚙️</span>
+
+            Generating your question paper...
+
+            <br>
+
+            <small>
+                Please wait, AI is preparing your questions.
+            </small>
+
+        </div>
+
+
+    </form>
+
+</div>
+
+
+<!-- Loading Script -->
+
+<script>
+
+    const form = document.getElementById("questionForm");
+
+    const button = document.getElementById("generateButton");
+
+    const loadingBox = document.getElementById("loadingBox");
+
+
+    form.addEventListener("submit", function () {
+
+        // Show loading message
+
+        loadingBox.style.display = "block";
+
+
+        // Disable button
+
+        button.disabled = true;
+
+        button.classList.add("loading");
+
+
+        // Change button text
+
+        button.innerHTML = "⏳ Generating...";
+
+    });
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Question Paper Generator</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #eaf6fb;
+            color: #263238;
+        }
+
+        .container {
+            width: 70%;
+            max-width: 850px;
+            margin: 55px auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(80, 150, 180, 0.18);
+            border: 1px solid #cfe8f2;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            margin: 0;
+            color: #247a9b;
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        .header p {
+            margin-top: 10px;
+            color: #6b8792;
+            font-size: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            color: #315968;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #b9dce8;
+            border-radius: 8px;
+            background: #ffffff;
+            color: #263238;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #48a9c5;
+            box-shadow: 0 0 0 3px rgba(72, 169, 197, 0.12);
+        }
+
+        .generate-btn {
+            width: 100%;
+            margin-top: 10px;
+            padding: 14px;
+            background: #3b9bbb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .generate-btn:hover {
+            background: #287f9e;
+        }
+
+        .generate-btn:disabled {
+            background: #8bb6c4;
+            cursor: not-allowed;
+        }
+
+        .loading-box {
+            display: none;
+            margin-top: 20px;
+            padding: 16px;
+            text-align: center;
+            background: #e5f6fb;
+            border: 1px solid #b9dfe9;
+            border-radius: 8px;
+            color: #28677b;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .footer-text {
+            text-align: center;
+            margin-top: 25px;
+            color: #8aa4ad;
+            font-size: 13px;
+        }
+
+        @media (max-width: 768px) {
+
+            .container {
+                width: 92%;
+                margin: 25px auto;
+                padding: 25px;
+            }
+
+            .header h1 {
+                font-size: 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="header">
+
+            <h1>AI Question Paper Generator</h1>
+
+            <p>
+                Generate customized question papers using Artificial Intelligence
+            </p>
+
+        </div>
+
+
+        <form action="/generate" method="POST" id="questionForm">
+
+
+            <div class="form-group">
+
+                <label for="subject">
+                    Subject
+                </label>
+
+                <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    placeholder="Enter subject name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="topic">
+                    Topic Name
+                </label>
+
+                <input
+                    type="text"
+                    id="topic"
+                    name="topic"
+                    placeholder="Enter topic name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="language">
+                    Question Paper Language
+                </label>
+
+                <select
+                    id="language"
+                    name="language"
+                    required
+                >
+
+                    <option value="English" selected>
+                        English
+                    </option>
+
+                    <option value="Hindi">
+                        Hindi
+                    </option>
+
+                    <option value="Urdu">
+                        Urdu
+                    </option>
+
+                    <option value="French">
+                        French
+                    </option>
+
+                    <option value="Korean">
+                        Korean
+                    </option>
+
+                    <option value="Spanish">
+                        Spanish
+                    </option>
+
+                    <option value="German">
+                        German
+                    </option>
+
+                    <option value="Japanese">
+                        Japanese
+                    </option>
+
+                    <option value="Chinese">
+                        Chinese
+                    </option>
+
+                    <option value="Arabic">
+                        Arabic
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="total_questions">
+                    Total Questions
+                </label>
+
+                <input
+                    type="number"
+                    id="total_questions"
+                    name="total_questions"
+                    min="1"
+                    max="100"
+                    value="10"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="difficulty">
+                    Difficulty Level
+                </label>
+
+                <select
+                    id="difficulty"
+                    name="difficulty"
+                    required
+                >
+
+                    <option value="Easy">
+                        Easy
+                    </option>
+
+                    <option value="Medium" selected>
+                        Medium
+                    </option>
+
+                    <option value="Hard">
+                        Hard
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="marks">
+                    Total Marks
+                </label>
+
+                <input
+                    type="number"
+                    id="marks"
+                    name="marks"
+                    min="1"
+                    max="500"
+                    value="50"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="generate-btn"
+                id="generateButton"
+            >
+                Generate Question Paper
+            </button>
+
+
+            <div
+                class="loading-box"
+                id="loadingBox"
+            >
+                Generating your question paper... Please wait, AI is preparing your questions.
+            </div>
+
+
+        </form>
+
+
+        <div class="footer-text">
+
+            AI-based Question Paper Generation System
+
+        </div>
+
+
+    </div>
+
+
+    <script>
+
+        document
+            .getElementById("questionForm")
+            .addEventListener("submit", function () {
+
+                const button =
+                    document.getElementById("generateButton");
+
+                const loadingBox =
+                    document.getElementById("loadingBox");
+
+                button.disabled = true;
+
+                button.innerText = "Generating...";
+
+                loadingBox.style.display = "block";
+
+            });
+
+    </script>
+
+</body>
+
+</html>

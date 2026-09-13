@@ -1,791 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-<<<<<<< HEAD
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AI Question Paper Generator</title>
+    <title>Generated Question Paper</title>
 
-=======
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>AI Question Paper Generator</title>
-
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/style.css') }}">
-
->>>>>>> f400b3fb3d7adeeb499462c0d5b79c24be1938ec
     <style>
-
         * {
             box-sizing: border-box;
         }
 
         body {
-<<<<<<< HEAD
             margin: 0;
-            padding: 0;
-
-            font-family: Arial, Helvetica, sans-serif;
-
+            padding: 20px;
+            font-family: Arial, sans-serif;
             background: #eaf6fb;
-
-            color: #263238;
+            color: #1f2937;
         }
 
         .container {
-
-            width: 85%;
-            max-width: 1000px;
-
-            margin: 40px auto;
-
-            background: #ffffff;
-
+            max-width: 900px;
+            margin: 20px auto;
+            background: white;
             padding: 35px;
-
-            border-radius: 16px;
-
-            box-shadow: 0 8px 30px rgba(80, 150, 180, 0.18);
-
-            border: 1px solid #cfe8f2;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
         }
-
-        .header {
-
-            text-align: center;
-
-            margin-bottom: 30px;
-        }
-
-        .header h1 {
-
-            margin: 0;
-
-            color: #247a9b;
-
-            font-size: 30px;
-
-            font-weight: 700;
-        }
-
-        .header p {
-
-            margin-top: 10px;
-
-            color: #6b8792;
-=======
-
-            font-family: Arial, sans-serif;
-
-            background: #fdecef;
-
-            margin: 0;
-
-            padding: 30px 15px;
-
-            color: #4f3540;
-        }
-
-
-        .paper-card {
-
-            max-width: 1000px;
-
-            margin: auto;
-
-            background: #fff8fa;
-
-            padding: 35px;
-
-            border-radius: 20px;
-
-            box-shadow: 0 8px 25px rgba(196, 90, 120, 0.18);
-
-            border: 1px solid #f2cbd5;
-        }
-
-
-        /* Main Heading */
 
         h1 {
-
             text-align: center;
-
-            color: #c45a78;
-
-            margin-top: 0;
-
-            margin-bottom: 8px;
-
-            font-size: 30px;
+            color: #168aad;
+            margin-bottom: 25px;
         }
 
-
-        .subtitle {
-
-            text-align: center;
-
-            color: #9b6575;
-
-            margin-bottom: 30px;
->>>>>>> f400b3fb3d7adeeb499462c0d5b79c24be1938ec
-
-            font-size: 15px;
+        h2 {
+            color: #168aad;
+            border-bottom: 2px solid #b9dce8;
+            padding-bottom: 8px;
+            margin-top: 30px;
         }
 
-<<<<<<< HEAD
-=======
-
-        /* Paper Details */
-
->>>>>>> f400b3fb3d7adeeb499462c0d5b79c24be1938ec
-        .details {
-
-            display: grid;
-
-<<<<<<< HEAD
-            grid-template-columns: repeat(3, 1fr);
-
-            gap: 15px;
-
-            margin-bottom: 30px;
-        }
-
-        .detail-box {
-
-            background: #eef9fc;
-
-            border: 1px solid #c8e6ef;
-
-            padding: 15px;
-
+        .info {
+            background: #f0f9fc;
+            padding: 18px;
             border-radius: 10px;
+            margin-bottom: 25px;
         }
 
-        .detail-box strong {
-
-            display: block;
-
-            color: #32758a;
-
-            font-size: 13px;
-
-            margin-bottom: 5px;
+        .info p {
+            margin: 8px 0;
         }
 
-        .detail-box span {
-
-            color: #263238;
-
-            font-size: 15px;
-
-            font-weight: 600;
+        .question {
+            background: #f8fcfd;
+            border-left: 4px solid #168aad;
+            padding: 18px;
+            margin-bottom: 18px;
+            border-radius: 8px;
         }
 
-        .paper {
-
-            background: #ffffff;
-
-            border: 1px solid #d3e8ef;
-
-            border-radius: 10px;
-
-            padding: 25px;
-
+        .question-text {
+            font-weight: bold;
+            margin-bottom: 10px;
         }
 
-        .ai-content {
-
-            line-height: 1.7;
-
-            color: #263238;
-
-            font-size: 15px;
-
-            white-space: pre-wrap;
+        .options {
+            margin-top: 10px;
+            padding-left: 20px;
         }
 
-=======
-            grid-template-columns: 1fr 1fr;
-
-            gap: 14px;
-
-            margin: 20px 0 25px;
+        .options li {
+            margin-bottom: 6px;
         }
 
-
-        .detail-box {
-
-            background: #fce8ed;
-
-            padding: 14px 16px;
-
-            border-radius: 10px;
-
-            border-left: 4px solid #d97896;
-
+        .answer {
+            margin-top: 10px;
+            font-weight: bold;
         }
 
-
-        .detail-box strong {
-
-            color: #8d4d62;
-        }
-
-
-        hr {
-
-            border: none;
-
-            border-top: 2px solid #f0cbd5;
-
-            margin: 25px 0;
-        }
-
-
-        /* AI Question Paper */
-
-        .ai-content {
-
-            white-space: pre-wrap;
-
-            line-height: 1.8;
-
-            font-size: 16px;
-
-            background: #ffffff;
-
-            padding: 25px;
-
-            border-radius: 14px;
-
-            border: 1px solid #f0d1d9;
-
-            overflow-wrap: break-word;
-
-            color: #403239;
-        }
-
-
-        /* Buttons */
-
->>>>>>> f400b3fb3d7adeeb499462c0d5b79c24be1938ec
         .buttons {
-
             display: flex;
-
-            justify-content: center;
-
-<<<<<<< HEAD
             gap: 12px;
-
             flex-wrap: wrap;
-
             margin-top: 30px;
         }
 
         .btn {
-
-            text-decoration: none;
-=======
-            align-items: center;
-
-            gap: 12px;
-
-            margin-top: 30px;
-
-            flex-wrap: wrap;
-        }
-
-
-        .buttons a {
-
-            text-decoration: none;
-        }
-
-
-        .buttons button {
->>>>>>> f400b3fb3d7adeeb499462c0d5b79c24be1938ec
-
-            border: none;
-
-            padding: 12px 22px;
-
-<<<<<<< HEAD
-            border-radius: 8px;
-
-            font-size: 15px;
-
-            font-weight: 600;
-
-=======
-            border-radius: 10px;
-
-            font-size: 15px;
-
->>>>>>> f400b3fb3d7adeeb499462c0d5b79c24be1938ec
-            cursor: pointer;
-
+            display: inline-block;
+            padding: 12px 20px;
+            background: #168aad;
             color: white;
-
-<<<<<<< HEAD
-            background: #3b9bbb;
+            text-decoration: none;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
         }
 
         .btn:hover {
-
-            background: #287f9e;
+            background: #117494;
         }
 
         .btn-secondary {
-
-            background: #7baebd;
+            background: #64748b;
         }
 
         .btn-secondary:hover {
-
-            background: #5d95a6;
+            background: #475569;
         }
 
-        @media (max-width: 768px) {
-
-            .container {
-
-                width: 94%;
-
-                margin: 20px auto;
-
-                padding: 22px;
-            }
-
-=======
-            transition: 0.2s;
-
-            margin: 0;
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #64748b;
+            font-size: 13px;
         }
 
-
-        .download-btn {
-
-            background: #d97896;
-        }
-
-
-        .download-btn:hover {
-
-            background: #c45a78;
-
-            transform: translateY(-1px);
-        }
-
-
-        .print-btn {
-
-            background: #b87591;
-        }
-
-
-        .print-btn:hover {
-
-            background: #9f5d78;
-
-            transform: translateY(-1px);
-        }
-
-
-        .home-btn {
-
-            background: #e5a5b8;
-        }
-
-
-        .home-btn:hover {
-
-            background: #d58ba2;
-
-            transform: translateY(-1px);
-        }
-
-
-        /* Mobile */
-
-        @media (max-width: 700px) {
-
-            body {
-
-                padding: 15px 10px;
-            }
-
-
-            .paper-card {
-
-                padding: 20px;
-
-                border-radius: 15px;
-            }
-
-
-            h1 {
-
-                font-size: 24px;
-            }
-
-
->>>>>>> f400b3fb3d7adeeb499462c0d5b79c24be1938ec
-            .details {
-
-                grid-template-columns: 1fr;
-            }
-
-<<<<<<< HEAD
-            .header h1 {
-
-                font-size: 25px;
-            }
-        }
-
-=======
-
-            .ai-content {
-
-                padding: 18px;
-
-                font-size: 15px;
-            }
-
-
-            .buttons {
-
-                flex-direction: column;
-            }
-
-
-            .buttons button {
-
-                width: 100%;
-
-                min-width: 220px;
-            }
-
-        }
-
-
-        /* Print */
-
->>>>>>> f400b3fb3d7adeeb499462c0d5b79c24be1938ec
         @media print {
-
             body {
-
                 background: white;
-<<<<<<< HEAD
-            }
-
-            .container {
-
-                width: 100%;
-
-                margin: 0;
-=======
-
                 padding: 0;
             }
 
-
-            .paper-card {
->>>>>>> f400b3fb3d7adeeb499462c0d5b79c24be1938ec
-
+            .container {
+                max-width: 100%;
+                margin: 0;
                 box-shadow: none;
-
-                border: none;
-<<<<<<< HEAD
+                padding: 20px;
             }
 
-=======
+            .buttons,
+            footer {
+                display: none;
+            }
+        }
 
-                max-width: 100%;
-
-                margin: 0;
-
+        @media (max-width: 600px) {
+            body {
                 padding: 10px;
             }
 
+            .container {
+                padding: 20px;
+            }
 
->>>>>>> f400b3fb3d7adeeb499462c0d5b79c24be1938ec
             .buttons {
-
-                display: none;
-            }
-<<<<<<< HEAD
-=======
-
-
-            .ai-content {
-
-                border: none;
-
-                padding: 0;
-
-                background: white;
+                flex-direction: column;
             }
 
-
-            .details {
-
-                break-inside: avoid;
+            .btn {
+                width: 100%;
+                text-align: center;
             }
-
->>>>>>> f400b3fb3d7adeeb499462c0d5b79c24be1938ec
         }
-
     </style>
-
 </head>
 
-<<<<<<< HEAD
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <div class="header">
+    <h1>AI Generated Question Paper</h1>
 
-            <h1>AI Question Paper Generator</h1>
+    <div class="info">
 
-            <p>
-                Your AI-generated question paper is ready
-            </p>
-
-        </div>
-
-
-        <div class="details">
-
-            <div class="detail-box">
-                <strong>Subject</strong>
-                <span>{{ paper.subject }}</span>
-            </div>
-
-            <div class="detail-box">
-                <strong>Topic</strong>
-                <span>{{ paper.topic }}</span>
-            </div>
-
-            <div class="detail-box">
-                <strong>Difficulty</strong>
-                <span>{{ paper.difficulty }}</span>
-            </div>
-
-            <div class="detail-box">
-                <strong>Total Questions</strong>
-                <span>{{ paper.total_questions }}</span>
-            </div>
-
-            <div class="detail-box">
-                <strong>Total Marks</strong>
-                <span>{{ paper.marks }}</span>
-            </div>
-
-            <div class="detail-box">
-                <strong>Date</strong>
-                <span>{{ paper.date }}</span>
-            </div>
-
-            <div class="detail-box">
-                <strong>Time</strong>
-                <span>{{ paper.time }}</span>
-            </div>
-
-        </div>
-
-
-        <div class="paper">
-
-            <div class="ai-content">
-                {{ paper.content }}
-            </div>
-
-        </div>
-
-
-        <div class="buttons">
-
-            <a
-                href="/download"
-                class="btn"
-            >
-                Download PDF
-            </a>
-
-            <button
-                onclick="window.print()"
-                class="btn"
-            >
-                Print Paper
-            </button>
-
-            <a
-                href="/"
-                class="btn btn-secondary"
-            >
-                Generate Another Paper
-            </a>
-
-        </div>
-
-    </div>
-
-</body>
-
-</html>
-=======
-
-<body>
-
-<div class="paper-card">
-
-
-    <!-- Heading -->
-
-    <h1>🤖 AI Question Paper Generator</h1>
-
-    <div class="subtitle">
-
-        Your AI-generated question paper is ready
-
-    </div>
-
-
-    <!-- Paper Details -->
-
-    <div class="details">
-
-
-        <div class="detail-box">
-
+        <p>
             <strong>Subject:</strong>
-
             {{ paper.subject }}
+        </p>
 
-        </div>
-
-
-        <div class="detail-box">
-
+        <p>
             <strong>Topic:</strong>
-
             {{ paper.topic }}
+        </p>
 
-        </div>
+        <p>
+            <strong>Language:</strong>
+            {{ paper.language }}
+        </p>
 
-
-        <div class="detail-box">
-
+        <p>
             <strong>Difficulty:</strong>
-
             {{ paper.difficulty }}
+        </p>
 
-        </div>
-
-
-        <div class="detail-box">
-
+        <p>
             <strong>Total Questions:</strong>
+            {{ paper.total_questions }}
+        </p>
 
-            {{ paper.questions }}
-
-        </div>
-
-
-        <div class="detail-box">
-
+        <p>
             <strong>Total Marks:</strong>
-
             {{ paper.marks }}
+        </p>
 
-        </div>
-
-
-        <div class="detail-box">
-
+        {% if paper.date %}
+        <p>
             <strong>Date:</strong>
-
             {{ paper.date }}
+        </p>
+        {% endif %}
 
-        </div>
-
-
-        <div class="detail-box">
-
+        {% if paper.time %}
+        <p>
             <strong>Time:</strong>
-
             {{ paper.time }}
-
-        </div>
-
-
-    </div>
-
-
-    <hr>
-
-
-    <!-- Generated Questions -->
-
-    <div class="ai-content">
-
-        {{ paper.content }}
+        </p>
+        {% endif %}
 
     </div>
 
 
-    <!-- Buttons -->
+    <div class="paper-content">
+
+        {{ paper.content | safe }}
+
+    </div>
+
 
     <div class="buttons">
 
-
-        <a href="/download?subject={{ paper.subject | urlencode }}&topic={{ paper.topic | urlencode }}&questions={{ paper.questions }}&difficulty={{ paper.difficulty | urlencode }}&marks={{ paper.marks }}&content={{ paper.content | urlencode }}">
-
-            <button class="download-btn">
-
-                ⬇ Download PDF
-
-            </button>
-
+        <a href="/download" class="btn">
+            Download PDF
         </a>
 
-
-        <button
-            class="print-btn"
-            onclick="window.print()">
-
-            🖨 Print Paper
-
+        <button onclick="window.print()" class="btn">
+            Print Paper
         </button>
 
-
-        <a href="/">
-
-            <button class="home-btn">
-
-                🏠 Generate Another Paper
-
-            </button>
-
+        <a href="/" class="btn btn-secondary">
+            Generate Another Paper
         </a>
-
 
     </div>
 
+
+    <footer>
+        AI-based Question Paper Generation System
+    </footer>
 
 </div>
 
 </body>
-
 </html>
->>>>>>> f400b3fb3d7adeeb499462c0d5b79c24be1938ec

@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-env/
+﻿env/
 __pycache__/
-=======
-env/
-__pycache__/
->>>>>>> f400b3fb3d7adeeb499462c0d5b79c24be1938ec
 *.pyc
+.env
+.vscode/

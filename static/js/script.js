@@ -1,13 +1,12 @@
-const form = document.querySelector("form");
-const button = document.querySelector("button[type='submit']");
+document.addEventListener("DOMContentLoaded", function () {
 
-form.addEventListener("submit", function () {
+    const form = document.querySelector("form");
+    const loading = document.getElementById("loading");
 
-    button.innerHTML = "⏳ Generating...";
-    button.disabled = true;
+    if (form && loading) {
+        form.addEventListener("submit", function () {
+            loading.style.display = "block";
+        });
+    }
 
-<<<<<<< HEAD
 });
-=======
-});
->>>>>>> f400b3fb3d7adeeb499462c0d5b79c24be1938ec

@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
 
 <head>
 
     <meta charset="UTF-8">
 
+=======
+<head>
+    <meta charset="UTF-8">
+>>>>>>> f400b3fb3d7adeeb499462c0d5b79c24be1938ec
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>AI Question Paper Generator</title>
 
     <style>
+<<<<<<< HEAD
 
+=======
+>>>>>>> f400b3fb3d7adeeb499462c0d5b79c24be1938ec
         * {
             box-sizing: border-box;
         }
@@ -125,7 +133,10 @@
         }
 
         @media (max-width: 768px) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> f400b3fb3d7adeeb499462c0d5b79c24be1938ec
             .container {
                 width: 92%;
                 margin: 25px auto;
@@ -135,11 +146,16 @@
             .header h1 {
                 font-size: 25px;
             }
+<<<<<<< HEAD
 
         }
 
     </style>
 
+=======
+        }
+    </style>
+>>>>>>> f400b3fb3d7adeeb499462c0d5b79c24be1938ec
 </head>
 
 <body>
@@ -147,12 +163,16 @@
     <div class="container">
 
         <div class="header">
+<<<<<<< HEAD
 
+=======
+>>>>>>> f400b3fb3d7adeeb499462c0d5b79c24be1938ec
             <h1>AI Question Paper Generator</h1>
 
             <p>
                 Generate customized question papers using Artificial Intelligence
             </p>
+<<<<<<< HEAD
 
         </div>
 
@@ -165,6 +185,14 @@
                 <label for="subject">
                     Subject
                 </label>
+=======
+        </div>
+
+        <form action="/generate" method="POST" id="questionForm">
+
+            <div class="form-group">
+                <label for="subject">Subject</label>
+>>>>>>> f400b3fb3d7adeeb499462c0d5b79c24be1938ec
 
                 <input
                     type="text"
@@ -173,6 +201,7 @@
                     placeholder="Enter subject name"
                     required
                 >
+<<<<<<< HEAD
 
             </div>
 
@@ -182,6 +211,12 @@
                 <label for="topic">
                     Topic Name
                 </label>
+=======
+            </div>
+
+            <div class="form-group">
+                <label for="topic">Topic Name</label>
+>>>>>>> f400b3fb3d7adeeb499462c0d5b79c24be1938ec
 
                 <input
                     type="text"
@@ -190,6 +225,7 @@
                     placeholder="Enter topic name"
                     required
                 >
+<<<<<<< HEAD
 
             </div>
 
@@ -260,6 +296,12 @@
                 <label for="total_questions">
                     Total Questions
                 </label>
+=======
+            </div>
+
+            <div class="form-group">
+                <label for="total_questions">Total Questions</label>
+>>>>>>> f400b3fb3d7adeeb499462c0d5b79c24be1938ec
 
                 <input
                     type="number"
@@ -270,6 +312,7 @@
                     value="10"
                     required
                 >
+<<<<<<< HEAD
 
             </div>
 
@@ -279,12 +322,19 @@
                 <label for="difficulty">
                     Difficulty Level
                 </label>
+=======
+            </div>
+
+            <div class="form-group">
+                <label for="difficulty">Difficulty Level</label>
+>>>>>>> f400b3fb3d7adeeb499462c0d5b79c24be1938ec
 
                 <select
                     id="difficulty"
                     name="difficulty"
                     required
                 >
+<<<<<<< HEAD
 
                     <option value="Easy">
                         Easy
@@ -308,6 +358,16 @@
                 <label for="marks">
                     Total Marks
                 </label>
+=======
+                    <option value="Easy">Easy</option>
+                    <option value="Medium" selected>Medium</option>
+                    <option value="Hard">Hard</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="marks">Total Marks</label>
+>>>>>>> f400b3fb3d7adeeb499462c0d5b79c24be1938ec
 
                 <input
                     type="number"
@@ -318,10 +378,15 @@
                     value="50"
                     required
                 >
+<<<<<<< HEAD
 
             </div>
 
 
+=======
+            </div>
+
+>>>>>>> f400b3fb3d7adeeb499462c0d5b79c24be1938ec
             <button
                 type="submit"
                 class="generate-btn"
@@ -330,7 +395,10 @@
                 Generate Question Paper
             </button>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> f400b3fb3d7adeeb499462c0d5b79c24be1938ec
             <div
                 class="loading-box"
                 id="loadingBox"
@@ -338,6 +406,7 @@
                 Generating your question paper... Please wait, AI is preparing your questions.
             </div>
 
+<<<<<<< HEAD
 
         </form>
 
@@ -354,6 +423,17 @@
 
     <script>
 
+=======
+        </form>
+
+        <div class="footer-text">
+            AI-based Question Paper Generation System
+        </div>
+
+    </div>
+
+    <script>
+>>>>>>> f400b3fb3d7adeeb499462c0d5b79c24be1938ec
         document
             .getElementById("questionForm")
             .addEventListener("submit", function () {
@@ -369,6 +449,7 @@
                 button.innerText = "Generating...";
 
                 loadingBox.style.display = "block";
+<<<<<<< HEAD
 
             });
 
@@ -377,3 +458,10 @@
 </body>
 
 </html>
+=======
+            });
+    </script>
+
+</body>
+</html>
+>>>>>>> f400b3fb3d7adeeb499462c0d5b79c24be1938ec

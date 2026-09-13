@@ -35,7 +35,6 @@ app = Flask(__name__)
 HF_TOKEN = os.environ.get("HF_TOKEN")
 
 if not HF_TOKEN:
-
     raise RuntimeError(
         "HF_TOKEN nahi mila. Pehle PowerShell mein token set karo."
     )
@@ -57,7 +56,6 @@ MODEL = "openai/gpt-oss-120b"
 FONT_NAME = "Helvetica"
 
 
-# Try to use DejaVu Sans for Unicode languages
 possible_fonts = [
 
     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
@@ -100,7 +98,6 @@ def make_pdf_safe(text):
 
         "–": "-",
         "—": "-",
-        "-": "-",
         "−": "-",
 
         "“": '"',
@@ -164,7 +161,8 @@ IMPORTANT RULES:
 3. Every question must be relevant to the given subject and topic.
 4. Follow the requested difficulty level: {difficulty}.
 5. The complete question paper must be written in {language}.
-6. Do NOT use English if the selected language is different, except where technical terms are normally used.
+6. Do NOT use English if the selected language is different, except
+   where technical terms are normally used.
 7. Use the correct native writing system of the selected language.
 8. For Hindi, use Devanagari script.
 9. For Urdu, use Urdu script.
@@ -243,7 +241,6 @@ Return ONLY the question paper.
         ],
 
         max_tokens=6000
-
     )
 
 
@@ -315,10 +312,6 @@ def generate():
         "English"
     )
 
-
-    # IMPORTANT:
-    # Home page uses total_questions
-    # So app.py also reads total_questions.
 
     questions = request.form.get(
         "total_questions",
@@ -498,17 +491,21 @@ def download():
         subject
     )
 
+
     topic = make_pdf_safe(
         topic
     )
+
 
     language = make_pdf_safe(
         language
     )
 
+
     difficulty = make_pdf_safe(
         difficulty
     )
+
 
     content = make_pdf_safe(
         content

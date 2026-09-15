@@ -374,6 +374,25 @@ def get_pdf_font(language):
 # GENERATE PDF
 # =========================================================
 
+def make_mixed_script_markup(text, script_font, latin_font="Helvetica"):
+    """Return ReportLab markup that explicitly uses Helvetica for Latin text
+    and the selected Unicode font for the requested script.
+    This prevents English labels/option letters from disappearing when a
+    script-specific font is used for Hindi/Arabic/CJK text.
+    """
+    safe = escape(text)
+
+    # Latin letters, digits and common exam punctuation. Keep runs together
+    # so things such as "SECTION A", "1.", "A.", "Marks: 2" render reliably.
+    pattern = r"[A-Za-z0-9][A-Za-z0-9 .,:;!?()/%+\-*=\'\"]*"
+
+    return re.sub(
+        pattern,
+        lambda m: f'<font name="{latin_font}">{m.group(0)}</font>',
+        safe
+    )
+
+
 def generate_pdf(paper):
     language = paper["language"]
     font_name = get_pdf_font(language)
@@ -395,10 +414,15 @@ def generate_pdf(paper):
 
     styles = getSampleStyleSheet()
 
+    # Use the Latin font for the paper title and metadata so English
+    # labels remain visible even when the selected language uses a
+    # script-specific font.
+    latin_font = "Helvetica"
+
     title_style = ParagraphStyle(
         "PaperTitle",
         parent=styles["Title"],
-        fontName=font_name,
+        fontName=latin_font,
         fontSize=17,
         leading=22,
         alignment=TA_LEFT,
@@ -417,7 +441,7 @@ def generate_pdf(paper):
     section_style = ParagraphStyle(
         "Section",
         parent=styles["Heading2"],
-        fontName=font_name,
+        fontName=latin_font,
         fontSize=13,
         leading=18,
         spaceBefore=12,
@@ -448,47 +472,25 @@ def generate_pdf(paper):
         )
     )
 
-    story.append(
-        Paragraph(
-            f"<b>Subject:</b> {escape(str(paper['subject']))}",
-            info_style
-        )
-    )
+    metadata = [
+        ("Subject", str(paper["subject"])),
+        ("Topic", str(paper["topic"])),
+        ("Language", str(paper["language"])),
+        ("Difficulty", str(paper["difficulty"])),
+        ("Total Questions", str(paper["total_questions"])),
+        ("Total Marks", str(paper["total_marks"])),
+    ]
 
-    story.append(
-        Paragraph(
-            f"<b>Topic:</b> {escape(str(paper['topic']))}",
-            info_style
-        )
-    )
+    for label, value in metadata:
+        if font_name != latin_font:
+            metadata_markup = (
+                f'<font name="{latin_font}"><b>{escape(label)}:</b></font> '
+                f'{make_mixed_script_markup(value, font_name, latin_font)}'
+            )
+        else:
+            metadata_markup = f'<b>{escape(label)}:</b> {escape(value)}'
 
-    story.append(
-        Paragraph(
-            f"<b>Language:</b> {escape(str(paper['language']))}",
-            info_style
-        )
-    )
-
-    story.append(
-        Paragraph(
-            f"<b>Difficulty:</b> {escape(str(paper['difficulty']))}",
-            info_style
-        )
-    )
-
-    story.append(
-        Paragraph(
-            f"<b>Total Questions:</b> {escape(str(paper['total_questions']))}",
-            info_style
-        )
-    )
-
-    story.append(
-        Paragraph(
-            f"<b>Total Marks:</b> {escape(str(paper['total_marks']))}",
-            info_style
-        )
-    )
+        story.append(Paragraph(metadata_markup, info_style))
 
     story.append(Spacer(1, 8))
 
@@ -499,7 +501,17 @@ def generate_pdf(paper):
             story.append(Spacer(1, 5))
             continue
 
-        safe_line = escape(clean_line)
+        # Explicitly switch fonts inside mixed-language lines.
+        # Helvetica is used for Latin labels/numbers because it is built into
+        # ReportLab and therefore cannot lose A-Z, digits, punctuation, etc.
+        if font_name != latin_font:
+            safe_line = make_mixed_script_markup(
+                clean_line,
+                script_font=font_name,
+                latin_font=latin_font
+            )
+        else:
+            safe_line = escape(clean_line)
 
         if re.match(
             r"^SECTION\s+[ABC]",

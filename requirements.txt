@@ -1,4 +1,5 @@
-﻿Flask
+Flask
 huggingface_hub
-reportlab
+reportlab[bidi]
 gunicorn
+openai
